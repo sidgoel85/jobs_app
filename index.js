@@ -23,7 +23,7 @@ import { StructuredOutputParser } from "langchain/output_parsers";
   const model = new OpenAI({ 
     modelName: "gpt-3.5-turbo",
     temperature: 0,
-    openAIApiKey: "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"
+    openAIApiKey: ""
    });
 
 
@@ -39,7 +39,7 @@ import { StructuredOutputParser } from "langchain/output_parsers";
         const docs = await loader.load();
         
         const embeddings = new OpenAIEmbeddings({
-            openAIApiKey: "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", // In Node.js defaults to process.env.OPENAI_API_KEY
+            openAIApiKey: "", // In Node.js defaults to process.env.OPENAI_API_KEY
             batchSize: 512, // Default value if omitted is 512. Max is 2048
             modelName: "text-embedding-3-large",
           });
@@ -69,8 +69,8 @@ import { StructuredOutputParser } from "langchain/output_parsers";
     description:
       "Given the top 3 skills , please return the list of latest jobs matching those skills",
     region: "us-east-1", 
-    accessKeyId: "AKIARBMP2SWFEDFMTH2E", 
-    secretAccessKey: "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",
+    accessKeyId: "", 
+    secretAccessKey: "",
     functionName: "job-test-api"
 });
 
