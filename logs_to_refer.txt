@@ -1,0 +1,483 @@
+prompt is PromptTemplate {
+  lc_serializable: true,
+  lc_kwargs: {
+    template: 'Answer the following questions as best you can. You have access to the following tools:\n' +
+      '\n' +
+      '{tools}\n' +
+      '\n' +
+      'Use the following format:\n' +
+      '\n' +
+      'Question: the input question you must answer\n' +
+      'Thought: you should always think about what to do\n' +
+      'Action: the action to take, should be one of [{tool_names}]\n' +
+      'Action Input: the input to the action\n' +
+      'Observation: the result of the action\n' +
+      '... (this Thought/Action/Action Input/Observation can repeat N times)\n' +
+      'Thought: I now know the final answer\n' +
+      'Final Answer: the final answer to the original input question\n' +
+      '\n' +
+      'Begin!\n' +
+      '\n' +
+      'Question: {input}\n' +
+      'Thought:{agent_scratchpad}',
+    inputVariables: [ 'agent_scratchpad', 'input', 'tool_names', 'tools' ],
+    templateFormat: 'f-string',
+    partialVariables: {}
+  },
+  lc_runnable: true,
+  name: undefined,
+  lc_namespace: [ 'langchain_core', 'prompts', 'prompt' ],
+  inputVariables: [ 'agent_scratchpad', 'input', 'tool_names', 'tools' ],
+  outputParser: undefined,
+  partialVariables: {},
+  template: 'Answer the following questions as best you can. You have access to the following tools:\n' +
+    '\n' +
+    '{tools}\n' +
+    '\n' +
+    'Use the following format:\n' +
+    '\n' +
+    'Question: the input question you must answer\n' +
+    'Thought: you should always think about what to do\n' +
+    'Action: the action to take, should be one of [{tool_names}]\n' +
+    'Action Input: the input to the action\n' +
+    'Observation: the result of the action\n' +
+    '... (this Thought/Action/Action Input/Observation can repeat N times)\n' +
+    'Thought: I now know the final answer\n' +
+    'Final Answer: the final answer to the original input question\n' +
+    '\n' +
+    'Begin!\n' +
+    '\n' +
+    'Question: {input}\n' +
+    'Thought:{agent_scratchpad}',
+  templateFormat: 'f-string',
+  validateTemplate: true
+}
+agent is RunnableSequence {
+  lc_serializable: true,
+  lc_kwargs: {
+    first: RunnableAssign {
+      lc_serializable: true,
+      lc_kwargs: [Object],
+      lc_runnable: true,
+      name: undefined,
+      lc_namespace: [Array],
+      mapper: [RunnableMap]
+    },
+    middle: [ [PromptTemplate], [RunnableBinding] ],
+    last: ReActSingleInputOutputParser {
+      lc_serializable: false,
+      lc_kwargs: [Object],
+      lc_runnable: true,
+      name: undefined,
+      lc_namespace: [Array],
+      toolNames: [Array]
+    },
+    name: undefined
+  },
+  lc_runnable: true,
+  name: undefined,
+  first: RunnableAssign {
+    lc_serializable: true,
+    lc_kwargs: { mapper: [RunnableMap] },
+    lc_runnable: true,
+    name: undefined,
+    lc_namespace: [ 'langchain_core', 'runnables' ],
+    mapper: RunnableMap {
+      lc_serializable: true,
+      lc_kwargs: [Object],
+      lc_runnable: true,
+      name: undefined,
+      lc_namespace: [Array],
+      steps: [Object]
+    }
+  },
+  middle: [
+    PromptTemplate {
+      lc_serializable: true,
+      lc_kwargs: [Object],
+      lc_runnable: true,
+      name: undefined,
+      lc_namespace: [Array],
+      inputVariables: [Array],
+      outputParser: undefined,
+      partialVariables: [Object],
+      template: 'Answer the following questions as best you can. You have access to the following tools:\n' +
+        '\n' +
+        '{tools}\n' +
+        '\n' +
+        'Use the following format:\n' +
+        '\n' +
+        'Question: the input question you must answer\n' +
+        'Thought: you should always think about what to do\n' +
+        'Action: the action to take, should be one of [{tool_names}]\n' +
+        'Action Input: the input to the action\n' +
+        'Observation: the result of the action\n' +
+        '... (this Thought/Action/Action Input/Observation can repeat N times)\n' +
+        'Thought: I now know the final answer\n' +
+        'Final Answer: the final answer to the original input question\n' +
+        '\n' +
+        'Begin!\n' +
+        '\n' +
+        'Question: {input}\n' +
+        'Thought:{agent_scratchpad}',
+      templateFormat: 'f-string',
+      validateTemplate: true
+    },
+    RunnableBinding {
+      lc_serializable: true,
+      lc_kwargs: [Object],
+      lc_runnable: true,
+      name: undefined,
+      lc_namespace: [Array],
+      bound: [OpenAIChat],
+      config: {},
+      kwargs: [Object],
+      configFactories: undefined
+    }
+  ],
+  last: ReActSingleInputOutputParser {
+    lc_serializable: false,
+    lc_kwargs: { toolNames: [Array] },
+    lc_runnable: true,
+    name: undefined,
+    lc_namespace: [ 'langchain', 'agents', 'react' ],
+    toolNames: [ 'ResumeScanTool', 'calculator' ]
+  },
+  lc_namespace: [ 'langchain_core', 'runnables' ]
+}
+[chain/start] [1:chain:AgentExecutor] Entering Chain run with input: {
+  "input": {
+    "lc": 1,
+    "type": "constructor",
+    "id": [
+      "langchain_core",
+      "prompt_values",
+      "StringPromptValue"
+    ],
+    "kwargs": {
+      "value": "Return the top 3 key skills for ./Goel_Siddharth.docx?"
+    }
+  }
+}
+[chain/start] [1:chain:AgentExecutor > 2:chain:RunnableAgent] Entering Chain run with input: {
+  "input": {
+    "lc": 1,
+    "type": "constructor",
+    "id": [
+      "langchain_core",
+      "prompt_values",
+      "StringPromptValue"
+    ],
+    "kwargs": {
+      "value": "Return the top 3 key skills for ./Goel_Siddharth.docx?"
+    }
+  },
+  "steps": []
+}
+[chain/start] [1:chain:AgentExecutor > 2:chain:RunnableAgent > 3:chain:RunnableMap] Entering Chain run with input: {
+  "input": {
+    "input": {
+      "lc": 1,
+      "type": "constructor",
+      "id": [
+        "langchain_core",
+        "prompt_values",
+        "StringPromptValue"
+      ],
+      "kwargs": {
+        "value": "Return the top 3 key skills for ./Goel_Siddharth.docx?"
+      }
+    },
+    "steps": []
+  }
+}
+[chain/start] [1:chain:AgentExecutor > 2:chain:RunnableAgent > 3:chain:RunnableMap > 4:chain:RunnableLambda] Entering Chain run with input: {
+  "input": {
+    "lc": 1,
+    "type": "constructor",
+    "id": [
+      "langchain_core",
+      "prompt_values",
+      "StringPromptValue"
+    ],
+    "kwargs": {
+      "value": "Return the top 3 key skills for ./Goel_Siddharth.docx?"
+    }
+  },
+  "steps": []
+}
+[chain/end] [1:chain:AgentExecutor > 2:chain:RunnableAgent > 3:chain:RunnableMap > 4:chain:RunnableLambda] [1ms] Exiting Chain run with output: {
+  "output": ""
+}
+[chain/end] [1:chain:AgentExecutor > 2:chain:RunnableAgent > 3:chain:RunnableMap] [2ms] Exiting Chain run with output: {
+  "agent_scratchpad": ""
+}
+[chain/start] [1:chain:AgentExecutor > 2:chain:RunnableAgent > 5:prompt:PromptTemplate] Entering Chain run with input: {
+  "input": {
+    "lc": 1,
+    "type": "constructor",
+    "id": [
+      "langchain_core",
+      "prompt_values",
+      "StringPromptValue"
+    ],
+    "kwargs": {
+      "value": "Return the top 3 key skills for ./Goel_Siddharth.docx?"
+    }
+  },
+  "steps": [],
+  "agent_scratchpad": ""
+}
+[chain/end] [1:chain:AgentExecutor > 2:chain:RunnableAgent > 5:prompt:PromptTemplate] [1ms] Exiting Chain run with output: {
+  "lc": 1,
+  "type": "constructor",
+  "id": [
+    "langchain_core",
+    "prompt_values",
+    "StringPromptValue"
+  ],
+  "kwargs": {
+    "value": "Answer the following questions as best you can. You have access to the following tools:\n\nResumeScanTool: Invoke this to scan the doc and return the response user is looking\ncalculator: Useful for getting the result of a math expression. The input to this tool should be a valid mathematical expression that could be executed by a simple calculator.\n\nUse the following format:\n\nQuestion: the input question you must answer\nThought: you should always think about what to do\nAction: the action to take, should be one of [ResumeScanTool, calculator]\nAction Input: the input to the action\nObservation: the result of the action\n... (this Thought/Action/Action Input/Observation can repeat N times)\nThought: I now know the final answer\nFinal Answer: the final answer to the original input question\n\nBegin!\n\nQuestion: Return the top 3 key skills for ./Goel_Siddharth.docx?\nThought:"
+  }
+}
+[llm/start] [1:chain:AgentExecutor > 2:chain:RunnableAgent > 6:llm:OpenAIChat] Entering LLM run with input: {
+  "prompts": [
+    "Answer the following questions as best you can. You have access to the following tools:\n\nResumeScanTool: Invoke this to scan the doc and return the response user is looking\ncalculator: Useful for getting the result of a math expression. The input to this tool should be a valid mathematical expression that could be executed by a simple calculator.\n\nUse the following format:\n\nQuestion: the input question you must answer\nThought: you should always think about what to do\nAction: the action to take, should be one of [ResumeScanTool, calculator]\nAction Input: the input to the action\nObservation: the result of the action\n... (this Thought/Action/Action Input/Observation can repeat N times)\nThought: I now know the final answer\nFinal Answer: the final answer to the original input question\n\nBegin!\n\nQuestion: Return the top 3 key skills for ./Goel_Siddharth.docx?\nThought:"
+  ]
+}
+[llm/start] [1:llm:OpenAIChat] Entering LLM run with input: {
+  "prompts": [
+    "Answer the following questions as best you can. You have access to the following tools:\n\nResumeScanTool: Invoke this to scan the doc and return the response user is looking\ncalculator: Useful for getting the result of a math expression. The input to this tool should be a valid mathematical expression that could be executed by a simple calculator.\n\nUse the following format:\n\nQuestion: the input question you must answer\nThought: you should always think about what to do\nAction: the action to take, should be one of [ResumeScanTool, calculator]\nAction Input: the input to the action\nObservation: the result of the action\n... (this Thought/Action/Action Input/Observation can repeat N times)\nThought: I now know the final answer\nFinal Answer: the final answer to the original input question\n\nBegin!\n\nQuestion: Return the top 3 key skills for ./Goel_Siddharth.docx?\nThought:"
+  ]
+}
+[llm/end] [1:chain:AgentExecutor > 2:chain:RunnableAgent > 6:llm:OpenAIChat] [1.29s] Exiting LLM run with output: {
+  "generations": [
+    [
+      {
+        "text": "I should use the ResumeScanTool to extract the top 3 key skills from the resume.\nAction: ResumeScanTool\nAction Input: ./Goel_Siddharth.docx"
+      }
+    ]
+  ]
+}
+[llm/end] [1:llm:OpenAIChat] [1.29s] Exiting LLM run with output: {
+  "generations": [
+    [
+      {
+        "text": "I should use the ResumeScanTool to extract the top 3 key skills from the resume.\nAction: ResumeScanTool\nAction Input: ./Goel_Siddharth.docx"
+      }
+    ]
+  ]
+}
+[chain/start] [1:chain:AgentExecutor > 2:chain:RunnableAgent > 7:parser:ReActSingleInputOutputParser] Entering Chain run with input: {
+  "input": "I should use the ResumeScanTool to extract the top 3 key skills from the resume.\nAction: ResumeScanTool\nAction Input: ./Goel_Siddharth.docx"
+}
+[chain/end] [1:chain:AgentExecutor > 2:chain:RunnableAgent > 7:parser:ReActSingleInputOutputParser] [1ms] Exiting Chain run with output: {
+  "tool": "ResumeScanTool",
+  "toolInput": "./Goel_Siddharth.docx",
+  "log": "I should use the ResumeScanTool to extract the top 3 key skills from the resume.\nAction: ResumeScanTool\nAction Input: ./Goel_Siddharth.docx"
+}
+[chain/end] [1:chain:AgentExecutor > 2:chain:RunnableAgent] [1.30s] Exiting Chain run with output: {
+  "tool": "ResumeScanTool",
+  "toolInput": "./Goel_Siddharth.docx",
+  "log": "I should use the ResumeScanTool to extract the top 3 key skills from the resume.\nAction: ResumeScanTool\nAction Input: ./Goel_Siddharth.docx"
+}
+[agent/action] [1:chain:AgentExecutor] Agent selected action: {
+  "tool": "ResumeScanTool",
+  "toolInput": "./Goel_Siddharth.docx",
+  "log": "I should use the ResumeScanTool to extract the top 3 key skills from the resume.\nAction: ResumeScanTool\nAction Input: ./Goel_Siddharth.docx"
+}
+[tool/start] [1:chain:AgentExecutor > 8:tool:ResumeScanTool] Entering Tool run with input: "./Goel_Siddharth.docx"
+doc is ./Goel_Siddharth.docx
+k (4) is greater than the number of elements in the index (1), setting k to 1
+[llm/start] [1:llm:OpenAIChat] Entering LLM run with input: {
+  "prompts": [
+    "Use the following pieces of context to answer the question at the end. If you don't know the answer, just say that you don't know, don't try to make up an answer.\n\n\n\nSiddharth Goel\n\nHartford, CT\n\n804-300-2353\n\nSid.goel81@gmail.com\n\n\n\nI’m an AWS solution architect and SAFe certified full-stack engineer manager who builds and delivers state-of-the-art products that solve customers’ pain points and enable my team to perform at their best. I manage multiple applications and software development projects with high quality, speed, and scalability in a dynamic multi-tiered environment.\n\n\n\nPROFESSIONAL EXPERIENCE\n\n\n\nCognizant (March 2023 - Present)\n\nPrincipal Engineer\n\nClient/Project: Travelers \n\n\n\nArchitect AWS serverless end-end solution of the new contacts management website built using React/Node and AWS lambda/Step function/API Gateway/Cloud Front along with OKTA SSO. \n\nCreated and managed entire contacts collection infrastructure using terraform.\n\nImproved response time of contacts collections APIs from initial 5secs to about 1.5sec by implementing provision concurrency in lambdas in order to remove the cold start.\n\nMentoring and guiding the work of a team of 15 full stack developers that are geographically located. Responsible for outlining their development plan for career growth.\n\nPerforming a dual role of individual contributor and people leader.\n\nCollaborate with other engineer managers/architects to evaluate any new tech stack and give presentation to tech community on software best practices.\n\nWorking with POs to understand the feature requirements to support and guide the technical team.\n\n\n\nTechnologies / Tools:  AWS Lambda/Step Function/API Gateway/Dynamo DB/CloudFront/Terraform, Lambda Provision Concurrency, React, JavaScript, Performance Optimizations, NodeJS, Express, Storybook, Accessibility, Webpack, GIT, Jenkins, CI/CD, Docker, Event driven architecture, Nomad and Scrum.\n\n\n\n\n\nCredible (November 2022 till January)\n\nTechnical Manager\n\n\n\nWas involved in architecting and setting up Kafka messaging system to introduce event driven mechanism.\n\n\n\n\n\nS&P Global (October 2020 till November 2022)\n\nDirector / Technical Manager\n\n\n\nArchitect AWS serverless event driven end-end solution of the financial website built on React/Node and AWS lambda/SQS/SNS/Aurora with auto-scaling to handle burst in traffic.\n\nLeading and coordinating the work of a team of 20 full stack developers that are geographically located. Responsible for outlining their development plan for career growth.\n\nResponsible for performance reviews of team members and representing them during promotion cycle.\n\nPerforming a dual role of individual contributor and people leader.\n\nImproved initial load time of React app from initial 3secs to 0.5 secs using advanced features such as code-splitting and lazy loading.\n\nCollaborate with other engineer managers/architects to evaluate any new tech stack and give presentation to tech community on software best practices.\n\nWorking with POs to understand the feature requirements to support and guide the technical team.\n\n\n\nTechnologies / Tools:  AWS Lambda / Elastic Bean Stalk/API Gateway/Dynamo DB, React, JavaScript, Performance Optimizations, NodeJS, Express, Storybook, Accessibility, Webpack, GIT, Jenkins, CI/CD, Docker, Event driven architecture, Nomad and Scrum.\n\n\n\n\n\nSelective Insurance (March 2017 till September 2020)\n\nTechnical Manager\n\n\n\nLeading, planning and execution of company’s next generation policy quoting system to be used by small business owners($10m)\n\nDesigned, architected, and managed a new scalable vehicle reporting system to DMV using Informatica, which is estimated to cut down the IT budget by 30% for expanding into new state.\n\nWork with the Engineering and Product Management organizations to establish and deliver the product road-map.\n\nManage and coordinate the work of a team of 16 developers that are geographically located. Responsible for outlining their development plan for career growth.\n\nProject estimation, cost planning, and hiring, team execution for large and complex projects.\n\n\n\nTechnologies / Tools:  Informatica, C#, CI/CD, JavaScript, WebAPI, TFS, GIT, Asp.Net Core, Angular, Typescript, Azure DevOps, Scrum, SAFe.\n\n\n\n\n\n\n\nSolar City (Feb 2016 till Feb 2017)\n\nWeb Application Engineer Lead\n\n\n\nLead a group of enthusiast team of 4 developers to develop full stack enterprise application using next gen JavaScript language ES6/Typescript.\n\nCheck In, Versioning control, Shelving, Un-Shelving, for code review, creating a Work item, build management, Continuous integration using GIT.\n\nInvolved in Daily Scrum meeting in agile methodology to update stakeholders.\n\nInvolved in the bug fixing and creating required artifacts like root cause analysis, technical approach document.\n\nFront development using frameworks such as React.\n\nDesigned and implemented a state scan framework, a new scalable API service to extract all the state-based rules using .Net core API.\n\n\n\nTechnologies / Tools:  React, JavaScript, Python, WebAPI, GIT, AWS and CSS.\n\n\n\nExperis (March 2015 to Feb 2016)\n\nSenior Software Engineer\n\nClient/Project: Ameriprise Financial / Portfolio Decision Support & Research \n\n\n\nDevelopment using JavaScript and related frameworks such as AngularJS to build amazing products for the customers.\n\nAnalyzing and correction of the T-SQL queries performance in Stored Procedures using SQL Profiler.\n\nCheck In, Versioning control, Shelving, Un-Shelving, for code review, creating a Work items, build management, Continuous integration using GIT.\n\nWorked in LINQ to collection programming in business objects.\n\n\n\nTechnologies / Tools:  AngularJS, JavaScript, MVC, TFS.\n\n\n\nAccenture (Apr 2012 till Feb 2015)\n\nSenior Software Engineer Team Lead\n\n\n\nFront end development using vanilla JavaScript and Asp.Net Web Application.\n\nDesigned and developed the application business logic in C#.Net 4.0, WCF, Multi - Threads.\n\nWorked on implementing the security mechanism for the given scenario using WCF.\n\nWorked on creating/updating and modifying JSON for the transfer of data.\n\nWorked on writing SQL scripts using SQL Server 2008.\n\nAnalyzing and correction of the T-SQL queries performance in Stored Procedures using SQL Profiler.\n\nCheck In, Versioning control, Shelving, Un-Shelving, for code review, creating a Work items, build management, Continuous integration using TFS 2012/2013.\n\n\n\nTechnologies / Tools:  JavaScript WCF, C#.Net 4.0, SQL Server 2008, SQL Profiler, LINQ, Singleton, IOC, TFS 2012/2013.\n\n\n\nThomson Reuters (April 2010 to April 2012)\n\nSoftware Engineer\n\n \n\nDesigned and developed the application frontend in C#.Net 4.0, Asp.Net MVC 4.0 framework.\n\nWorked in development of WCF service and testing using WCF Test Client tool\n\nWorked on backend programming in SQL Server 2008 \n\nRefactoring of the code using ReSharper \n\nWorked on Asp.Net AJAX.\n\nCheck in versioning control, Shelving, Un-Shelving, for Code review, creating work items in TFS \n\n\n\nTechnologies/Tools: Asp.Net MVC 4.0, C#.Net 4.0, WCF, WCF Test Client, SQL Severe 2008, LINQ, ReSharper, CSS, TFS, JSON, Asp.Net AJAX, SQL Profiler.\n\n\n\nWipro Technologies. (June 2008 to April 2010)\n\nProject Engineer \n\n\n\nDesigned and developed business logic using MS-CRM and C# 3.5.\n\nWorked on backend programming in SQL Server 2008 \n\nInvolved in versioning control of code and Project documentations using TFS\n\nInvolved in analyzing and correction of T-SQL queries performance in Stored Procedures using SQL Profiler\n\n\n\nTechnologies/Tools: MS-CRM 4.0, C#.Net 3.5, SQL Server 2008, TFS, SQL Profiler, Web Service, JavaScript, AJAX, XML, HTM, HTTP Analyzer, ReSharper\n\n\n\nEDUCATION:\n\nBachelor’s of Engineering - 2007 V.T.U University, Belgaum, Karnataka/Atria Institute of Technology.\n\n\n\nQuestion: Return the top 3 key skills?\nHelpful Answer:"
+  ]
+}
+[llm/end] [1:llm:OpenAIChat] [928ms] Exiting LLM run with output: {
+  "generations": [
+    [
+      {
+        "text": "AWS Solution Architecture, Full-Stack Development, Technical Leadership"
+      }
+    ]
+  ]
+}
+[tool/end] [1:chain:AgentExecutor > 8:tool:ResumeScanTool] [2.19s] Exiting Tool run with output: "AWS Solution Architecture, Full-Stack Development, Technical Leadership"
+[chain/start] [1:chain:AgentExecutor > 9:chain:RunnableAgent] Entering Chain run with input: {
+  "input": {
+    "lc": 1,
+    "type": "constructor",
+    "id": [
+      "langchain_core",
+      "prompt_values",
+      "StringPromptValue"
+    ],
+    "kwargs": {
+      "value": "Return the top 3 key skills for ./Goel_Siddharth.docx?"
+    }
+  },
+  "steps": [
+    {
+      "action": {
+        "tool": "ResumeScanTool",
+        "toolInput": "./Goel_Siddharth.docx",
+        "log": "I should use the ResumeScanTool to extract the top 3 key skills from the resume.\nAction: ResumeScanTool\nAction Input: ./Goel_Siddharth.docx"
+      },
+      "observation": "AWS Solution Architecture, Full-Stack Development, Technical Leadership"
+    }
+  ]
+}
+[chain/start] [1:chain:AgentExecutor > 9:chain:RunnableAgent > 10:chain:RunnableMap] Entering Chain run with input: {
+  "input": {
+    "input": {
+      "lc": 1,
+      "type": "constructor",
+      "id": [
+        "langchain_core",
+        "prompt_values",
+        "StringPromptValue"
+      ],
+      "kwargs": {
+        "value": "Return the top 3 key skills for ./Goel_Siddharth.docx?"
+      }
+    },
+    "steps": [
+      {
+        "action": {
+          "tool": "ResumeScanTool",
+          "toolInput": "./Goel_Siddharth.docx",
+          "log": "I should use the ResumeScanTool to extract the top 3 key skills from the resume.\nAction: ResumeScanTool\nAction Input: ./Goel_Siddharth.docx"
+        },
+        "observation": "AWS Solution Architecture, Full-Stack Development, Technical Leadership"
+      }
+    ]
+  }
+}
+[chain/start] [1:chain:AgentExecutor > 9:chain:RunnableAgent > 10:chain:RunnableMap > 11:chain:RunnableLambda] Entering Chain run with input: {
+  "input": {
+    "lc": 1,
+    "type": "constructor",
+    "id": [
+      "langchain_core",
+      "prompt_values",
+      "StringPromptValue"
+    ],
+    "kwargs": {
+      "value": "Return the top 3 key skills for ./Goel_Siddharth.docx?"
+    }
+  },
+  "steps": [
+    {
+      "action": {
+        "tool": "ResumeScanTool",
+        "toolInput": "./Goel_Siddharth.docx",
+        "log": "I should use the ResumeScanTool to extract the top 3 key skills from the resume.\nAction: ResumeScanTool\nAction Input: ./Goel_Siddharth.docx"
+      },
+      "observation": "AWS Solution Architecture, Full-Stack Development, Technical Leadership"
+    }
+  ]
+}
+[chain/end] [1:chain:AgentExecutor > 9:chain:RunnableAgent > 10:chain:RunnableMap > 11:chain:RunnableLambda] [1ms] Exiting Chain run with output: {
+  "output": "I should use the ResumeScanTool to extract the top 3 key skills from the resume.\nAction: ResumeScanTool\nAction Input: ./Goel_Siddharth.docx\n\nObservation: AWS Solution Architecture, Full-Stack Development, Technical Leadership\nThought: "
+}
+[chain/end] [1:chain:AgentExecutor > 9:chain:RunnableAgent > 10:chain:RunnableMap] [1ms] Exiting Chain run with output: {
+  "agent_scratchpad": "I should use the ResumeScanTool to extract the top 3 key skills from the resume.\nAction: ResumeScanTool\nAction Input: ./Goel_Siddharth.docx\n\nObservation: AWS Solution Architecture, Full-Stack Development, Technical Leadership\nThought: "
+}
+[chain/start] [1:chain:AgentExecutor > 9:chain:RunnableAgent > 12:prompt:PromptTemplate] Entering Chain run with input: {
+  "input": {
+    "lc": 1,
+    "type": "constructor",
+    "id": [
+      "langchain_core",
+      "prompt_values",
+      "StringPromptValue"
+    ],
+    "kwargs": {
+      "value": "Return the top 3 key skills for ./Goel_Siddharth.docx?"
+    }
+  },
+  "steps": [
+    {
+      "action": {
+        "tool": "ResumeScanTool",
+        "toolInput": "./Goel_Siddharth.docx",
+        "log": "I should use the ResumeScanTool to extract the top 3 key skills from the resume.\nAction: ResumeScanTool\nAction Input: ./Goel_Siddharth.docx"
+      },
+      "observation": "AWS Solution Architecture, Full-Stack Development, Technical Leadership"
+    }
+  ],
+  "agent_scratchpad": "I should use the ResumeScanTool to extract the top 3 key skills from the resume.\nAction: ResumeScanTool\nAction Input: ./Goel_Siddharth.docx\n\nObservation: AWS Solution Architecture, Full-Stack Development, Technical Leadership\nThought: "
+}
+[chain/end] [1:chain:AgentExecutor > 9:chain:RunnableAgent > 12:prompt:PromptTemplate] [0ms] Exiting Chain run with output: {
+  "lc": 1,
+  "type": "constructor",
+  "id": [
+    "langchain_core",
+    "prompt_values",
+    "StringPromptValue"
+  ],
+  "kwargs": {
+    "value": "Answer the following questions as best you can. You have access to the following tools:\n\nResumeScanTool: Invoke this to scan the doc and return the response user is looking\ncalculator: Useful for getting the result of a math expression. The input to this tool should be a valid mathematical expression that could be executed by a simple calculator.\n\nUse the following format:\n\nQuestion: the input question you must answer\nThought: you should always think about what to do\nAction: the action to take, should be one of [ResumeScanTool, calculator]\nAction Input: the input to the action\nObservation: the result of the action\n... (this Thought/Action/Action Input/Observation can repeat N times)\nThought: I now know the final answer\nFinal Answer: the final answer to the original input question\n\nBegin!\n\nQuestion: Return the top 3 key skills for ./Goel_Siddharth.docx?\nThought:I should use the ResumeScanTool to extract the top 3 key skills from the resume.\nAction: ResumeScanTool\nAction Input: ./Goel_Siddharth.docx\n\nObservation: AWS Solution Architecture, Full-Stack Development, Technical Leadership\nThought: "
+  }
+}
+[llm/start] [1:chain:AgentExecutor > 9:chain:RunnableAgent > 13:llm:OpenAIChat] Entering LLM run with input: {
+  "prompts": [
+    "Answer the following questions as best you can. You have access to the following tools:\n\nResumeScanTool: Invoke this to scan the doc and return the response user is looking\ncalculator: Useful for getting the result of a math expression. The input to this tool should be a valid mathematical expression that could be executed by a simple calculator.\n\nUse the following format:\n\nQuestion: the input question you must answer\nThought: you should always think about what to do\nAction: the action to take, should be one of [ResumeScanTool, calculator]\nAction Input: the input to the action\nObservation: the result of the action\n... (this Thought/Action/Action Input/Observation can repeat N times)\nThought: I now know the final answer\nFinal Answer: the final answer to the original input question\n\nBegin!\n\nQuestion: Return the top 3 key skills for ./Goel_Siddharth.docx?\nThought:I should use the ResumeScanTool to extract the top 3 key skills from the resume.\nAction: ResumeScanTool\nAction Input: ./Goel_Siddharth.docx\n\nObservation: AWS Solution Architecture, Full-Stack Development, Technical Leadership\nThought:"
+  ]
+}
+[llm/start] [1:llm:OpenAIChat] Entering LLM run with input: {
+  "prompts": [
+    "Answer the following questions as best you can. You have access to the following tools:\n\nResumeScanTool: Invoke this to scan the doc and return the response user is looking\ncalculator: Useful for getting the result of a math expression. The input to this tool should be a valid mathematical expression that could be executed by a simple calculator.\n\nUse the following format:\n\nQuestion: the input question you must answer\nThought: you should always think about what to do\nAction: the action to take, should be one of [ResumeScanTool, calculator]\nAction Input: the input to the action\nObservation: the result of the action\n... (this Thought/Action/Action Input/Observation can repeat N times)\nThought: I now know the final answer\nFinal Answer: the final answer to the original input question\n\nBegin!\n\nQuestion: Return the top 3 key skills for ./Goel_Siddharth.docx?\nThought:I should use the ResumeScanTool to extract the top 3 key skills from the resume.\nAction: ResumeScanTool\nAction Input: ./Goel_Siddharth.docx\n\nObservation: AWS Solution Architecture, Full-Stack Development, Technical Leadership\nThought:"
+  ]
+}
+[llm/end] [1:chain:AgentExecutor > 9:chain:RunnableAgent > 13:llm:OpenAIChat] [933ms] Exiting LLM run with output: {
+  "generations": [
+    [
+      {
+        "text": "I have the top 3 key skills from the resume.\nFinal Answer: AWS Solution Architecture, Full-Stack Development, Technical Leadership"
+      }
+    ]
+  ]
+}
+[llm/end] [1:llm:OpenAIChat] [933ms] Exiting LLM run with output: {
+  "generations": [
+    [
+      {
+        "text": "I have the top 3 key skills from the resume.\nFinal Answer: AWS Solution Architecture, Full-Stack Development, Technical Leadership"
+      }
+    ]
+  ]
+}
+[chain/start] [1:chain:AgentExecutor > 9:chain:RunnableAgent > 14:parser:ReActSingleInputOutputParser] Entering Chain run with input: {
+  "input": "I have the top 3 key skills from the resume.\nFinal Answer: AWS Solution Architecture, Full-Stack Development, Technical Leadership"
+}
+[chain/end] [1:chain:AgentExecutor > 9:chain:RunnableAgent > 14:parser:ReActSingleInputOutputParser] [0ms] Exiting Chain run with output: {
+  "returnValues": {
+    "output": "AWS Solution Architecture, Full-Stack Development, Technical Leadership"
+  },
+  "log": "I have the top 3 key skills from the resume.\nFinal Answer: AWS Solution Architecture, Full-Stack Development, Technical Leadership"
+}
+[chain/end] [1:chain:AgentExecutor > 9:chain:RunnableAgent] [938ms] Exiting Chain run with output: {
+  "returnValues": {
+    "output": "AWS Solution Architecture, Full-Stack Development, Technical Leadership"
+  },
+  "log": "I have the top 3 key skills from the resume.\nFinal Answer: AWS Solution Architecture, Full-Stack Development, Technical Leadership"
+}
+[chain/end] [1:chain:AgentExecutor] [4.43s] Exiting Chain run with output: {
+  "input": {
+    "lc": 1,
+    "type": "constructor",
+    "id": [
+      "langchain_core",
+      "prompt_values",
+      "StringPromptValue"
+    ],
+    "kwargs": {
+      "value": "Return the top 3 key skills for ./Goel_Siddharth.docx?"
+    }
+  },
+  "output": "AWS Solution Architecture, Full-Stack Development, Technical Leadership"
+}
+AWS Solution Architecture, Full-Stack Development, Technical Leadership
+sid@Siddharths-MacBook-Pro getJobs % 
