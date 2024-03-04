@@ -95,26 +95,3 @@ const resumeScanRes = await reactAgentExec.invoke({input : await reactResumeProm
 console.log("res is", JSON.parse(resumeScanRes.output));
 
 //}
-
-
-
-
-
-
-
-
-// const jobApiTool = new AWSLambda({
-//   name: "job-api",
-//   // tell the Agent precisely what the tool does
-//   description:
-//     "Return the list of jobs",
-//   region: "us-east-1", 
-//   accessKeyId: "AKIARBMP2SWFEDFMTH2E", 
-//   secretAccessKey: "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",
-//   functionName: "job-test-api"
-// });
-
-// const res = await jobApiTool.invoke({input : resumeScanRes.output});
-// console.log(res);
-
-
