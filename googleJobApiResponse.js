@@ -6,7 +6,7 @@
       location: ' Anywhere ',
       via: 'via LinkedIn',
       extensions: [
-        '9 hours ago',
+        '10 hours ago',
         'Work from home',
         'Full-time',
         'No degree mentioned',
