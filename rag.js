@@ -11,15 +11,6 @@ import { FaissStore } from "@langchain/community/vectorstores/faiss";
 import { pull } from "langchain/hub";
 import { StructuredOutputParser } from "langchain/output_parsers";
 
-
-//export const handler = async(event) => {
-
-// const parser = StructuredOutputParser.fromNamesAndDescriptions({
-//   answer : "answer to user's question"
-// });
-
-// const formatInstructions = parser.getFormatInstructions();
-
   const model = new OpenAI({ 
     modelName: "gpt-3.5-turbo",
     temperature: 0,
